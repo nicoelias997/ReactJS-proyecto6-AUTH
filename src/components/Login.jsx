@@ -1,4 +1,5 @@
 import React from 'react'
+import {auth, dataBase} from "../firebase.js"
 
 const Login = () => {
 
@@ -23,7 +24,33 @@ const Login = () => {
             return
         }
         setError(null)
+
+        if(esRegistro){
+            registrar()
+        }
 }
+
+    const registrar = React.useCallback( async () => {
+        try{
+         const res = await auth.createUserWithEmailAndPassword(email, pass)
+         await dataBase.collection("usuarios").doc(res.user.uid).set({//creamos la coleccion
+            email: res.user.email,
+            uid: res.user.uid
+         }
+         ) 
+         setEmail("")
+         setPass("")
+         setError(null)
+         console.log(res.user)
+        } catch(error){
+            if(error.code === "auth/invalid-email"){
+            setError("Email no valido")
+            }
+            if(error.code === "auth/email-already-in-use"){
+            setError("Email ya registrado")
+            }
+        }
+    }, [email,pass])
 
 
   return (

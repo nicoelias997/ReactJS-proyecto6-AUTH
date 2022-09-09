@@ -1,4 +1,4 @@
-import app from "firebase/app" //con esto config firebase
+import app from "firebase/compat/app" //con esto config firebase
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
 
@@ -13,7 +13,7 @@ const firebaseConfig = {
   
 app.initializeApp(firebaseConfig);
 
-const dataBase = firebase.firestore()
+const dataBase = app.firestore()
 const auth = app.auth()
 
 export {dataBase, auth}
