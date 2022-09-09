@@ -8,13 +8,13 @@ const Navbar = () => {
     <div className="navbar navbar-dark bg-dark">
         <NavLink className ="navbar-brand" to="/navbar">AUTH</NavLink> 
         <div className="d-flex">
-            <NavLink className=" btn btn-dark mr-2" to="/" exact="true">
+            <NavLink className=" btn btn-dark me-2" to="/" exact="true">
                 Inicio
             </NavLink>
-            <NavLink className=" btn btn-dark mr-2" to="admin">
+            <NavLink className=" btn btn-dark me-2" to="admin">
                 Admin
             </NavLink>
-            <NavLink className=" btn btn-dark mr-2" to="/login">
+            <NavLink className=" btn btn-dark me-2" to="/login">
                 Login
             </NavLink>
 

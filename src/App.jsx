@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Navbar from "./components/Navbar"
+import Login from "./components/Login"
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={"inicio"}>
         </Route>
-        <Route path="/login" element={"login"}>
+        <Route path="/login" element={<Login></Login>}>
         </Route>
         <Route path="/admin" element={"admin"}>
         </Route>
