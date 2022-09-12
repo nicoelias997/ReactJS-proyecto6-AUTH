@@ -1,7 +1,10 @@
 import React from 'react'
 import {auth, dataBase} from "../firebase.js"
+import {useNavigate} from "react-router-dom"
 
-const Login = () => {
+const Login = (props) => {
+
+    const navigate = useNavigate()
 
     const [email, setEmail] = React.useState("")
     const [pass, setPass] = React.useState("")
@@ -27,8 +30,31 @@ const Login = () => {
 
         if(esRegistro){
             registrar()
+        } else {
+            login()
         }
 }
+    const login = React.useCallback(async () => {
+        try{
+         const res = await auth.signInWithEmailAndPassword(email,pass)
+         setEmail("")
+         setPass("")
+         setError(null)
+         navigate("/admin")
+         console.log(res.user)        
+        } catch(error){
+            if(error.code === "auth/invalid-email"){
+                setError("Email no valido")
+                }
+                if(error.code === "auth/user-not-found"){
+                setError("Email no registrado")
+                }
+                if(error.code === "auth/wrong-password"){
+                    setError("Contraseña incorrecta")
+                    }
+            }
+        }, [email,pass,navigate])
+
 
     const registrar = React.useCallback( async () => {
         try{
@@ -41,6 +67,7 @@ const Login = () => {
          setEmail("")
          setPass("")
          setError(null)
+         navigate("/admin")
          console.log(res.user)
         } catch(error){
             if(error.code === "auth/invalid-email"){
@@ -50,7 +77,7 @@ const Login = () => {
             setError("Email ya registrado")
             }
         }
-    }, [email,pass])
+    }, [email,pass,navigate])
 
 
   return (
