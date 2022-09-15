@@ -6,8 +6,8 @@ const Login = (props) => {
 
     const navigate = useNavigate()
 
-    const [email, setEmail] = React.useState("")
-    const [pass, setPass] = React.useState("")
+    const [email, setEmail] = React.useState("prueba@prueba.com")
+    const [pass, setPass] = React.useState("123123")
     const [error, setError] = React.useState(null)
     const [esRegistro, setEsRegistro] = React.useState(true)
 
@@ -64,6 +64,12 @@ const Login = (props) => {
             uid: res.user.uid
          }
          ) 
+         await dataBase.collection(res.user.uid).add(
+            {
+                name: "tarea de ejemplo",
+                fecha: Date.now()
+            }
+         ) //creamos una coleccione specifica para un usuario que estamos registrando
          setEmail("")
          setPass("")
          setError(null)

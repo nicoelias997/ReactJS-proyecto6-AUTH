@@ -1,7 +1,17 @@
 import React from 'react'
-import {NavLink} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
+import { auth } from '../firebase'
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+    const navigate = useNavigate()
+
+  const cerrarSesion = () => {
+    auth.signOut()
+    .then(() => {
+        navigate("/login")
+    })
+  }
 
   return (
 
@@ -11,12 +21,28 @@ const Navbar = () => {
             <NavLink className=" btn btn-dark me-2" to="/" exact="true">
                 Inicio
             </NavLink>
-            <NavLink className=" btn btn-dark me-2" to="admin">
+            {
+                props.firebaseUser !== null ? (
+                    <NavLink className=" btn btn-dark me-2" to="admin">
                 Admin
             </NavLink>
-            <NavLink className=" btn btn-dark me-2" to="/login">
-                Login
-            </NavLink>
+                ) : null
+            }
+            
+            {
+                props.firebaseUser !== null ? (
+                    <button className='btn btn-dark'
+                            onClick={() => cerrarSesion()}
+                            >
+                                Cerrar sesion
+                    </button>
+                ) : (
+                    <NavLink className=" btn btn-dark me-2" to="/login">
+                    Login
+                    </NavLink>
+                )
+            }
+           
 
         </div>
 

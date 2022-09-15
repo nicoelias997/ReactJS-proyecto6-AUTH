@@ -25,7 +25,9 @@ function App() {
     <Router>
     <div className="container mt-5">
       <h1>Probando AUTH</h1>  
-      <Navbar></Navbar>
+      <Navbar firebaseUser={firebaseUser}>
+      </Navbar> 
+
       <Routes>
         <Route path="/" exact element={"inicio"}>
         </Route>
@@ -33,7 +35,7 @@ function App() {
         </Route>
         <Route path="/admin" element={<Admin></Admin>}>
         </Route>
-      </Routes>   
+      </Routes>  
     </div>
   </Router>
   ) : 
