@@ -1,5 +1,9 @@
 import React from "react";
 import {dataBase} from "../firebase"
+
+import moment from "moment"
+import "moment/locale/es"
+
 function Firestore(props) {
   
   const [tareas, setTareas] = React.useState([])
@@ -99,7 +103,7 @@ const editar = async (e) => {
             {
                 tareas.map(item => (
                 <li className="list-group-item" key={item.id}>
-                  <span>{item.name}</span>
+                  <span>{item.name} - {moment(item.fecha).format("LLL")}</span>
           <button 
             className="btn btn-danger btn-sm float-end"
             onClick={() => eliminar(item.id)}>
