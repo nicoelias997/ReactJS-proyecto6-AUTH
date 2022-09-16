@@ -8,7 +8,6 @@ const Admin = () => {
     const user = auth.currentUser
     const navigate = useNavigate()
 
-    const [usuario, setUsuario] = React.useState(null)
 
     React.useEffect(() => {
         if(user){

@@ -28,7 +28,7 @@ const Reset = () => {
       catch(error){
         setError(error.message)
       }
-  }, [email])
+  }, [email,navigate])
 
   return (
     <div className='mt-5'>
