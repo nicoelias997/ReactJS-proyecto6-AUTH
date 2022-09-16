@@ -6,8 +6,8 @@ const Login = (props) => {
 
     const navigate = useNavigate()
 
-    const [email, setEmail] = React.useState("prueba@prueba.com")
-    const [pass, setPass] = React.useState("123123")
+    const [email, setEmail] = React.useState("")
+    const [pass, setPass] = React.useState("")
     const [error, setError] = React.useState(null)
     const [esRegistro, setEsRegistro] = React.useState(true)
 
@@ -137,6 +137,20 @@ const Login = (props) => {
                             }
                     </button>
 
+
+                        
+                            {
+                          !esRegistro ? (
+                                    <button 
+                                        className="btn btn-danger btn-sm mt-2"
+                                        type='button'
+                                        onClick={() => navigate("/reset")}>   
+                                        Recuperar contraseña
+                                        </button>
+
+                                    
+                                ) : null
+                            }
                     </div>
 
                 </form>
